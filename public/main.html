@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>검색</h1>
+    <form action="/search" method="post">
+        <input type="text" class="keyword">
+        <input type="submit">
+    </form>
+
+    <button class="search">submit</button>
+
+<script>
+    document.querySelector('.search').addEventListener('click', function (){
+        let inputData = document.forms[0].elements[0].value;
+        sendAjax('http://localhost:4000/ajax_search', inputData);
+    });
+
+    function sendAjax(url, data){
+        var data = JSON.stringify({'keyword' : data});
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', "application/json");
+        xhr.send(data);
+
+        xhr.addEventListener('load', function () {
+            var result = JSON.parse(xhr.responseText);
+            if(result.result !== "ok") return;
+            document.querySelector(".result").innerHTML = result.keyword;
+        });
+    }
+</script>
+
+</body>
+</html>
