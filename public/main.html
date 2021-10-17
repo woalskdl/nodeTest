@@ -7,16 +7,17 @@
 <body>
 
     <h1>검색</h1>
-    <form action="/search" method="post">
-        <input type="text" class="keyword">
-        <input type="submit">
+    <form>
+        <input type="text" name="keyword">
     </form>
 
-    <button class="search">submit</button>
+    <button class="search">제출</button>
+
+    <div class="result"></div>
 
 <script>
     document.querySelector('.search').addEventListener('click', function (){
-        let inputData = document.forms[0].elements[0].value;
+        var inputData = document.forms[0].elements[0].value;
         sendAjax('http://localhost:4000/ajax_search', inputData);
     });
 
@@ -31,7 +32,7 @@
         xhr.addEventListener('load', function () {
             var result = JSON.parse(xhr.responseText);
             if(result.result !== "ok") return;
-            document.querySelector(".result").innerHTML = result.keyword;
+            document.querySelector(".result").innerHTML = "<br><h1>" + result.keyword + "</h1>";
         });
     }
 </script>

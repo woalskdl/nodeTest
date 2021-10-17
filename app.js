@@ -20,11 +20,11 @@ app.get('/main', (req, res) => {
     res.sendFile(__dirname + "/public/main.html");
 });
 
-app.post('/search', (req, res) => {
-    console.log(req.body.keyword);
-    // res.send("<h1>welcome! <br/> " + req.body.email + "</h1>");
-    res.render('search.ejs', {'keyword' : req.body.keyword})
-});
+// app.post('/search', (req, res) => {
+//     console.log(req.body.keyword);
+//     // res.send("<h1>welcome! <br/> " + req.body.email + "</h1>");
+//     res.render('search.ejs', {'keyword' : req.body.keyword})
+// });
 
 app.post('/ajax_search', (req, res) => {
     console.log('ajax started');
